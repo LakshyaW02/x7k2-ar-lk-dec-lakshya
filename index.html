@@ -13,12 +13,16 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Arpita weds Lakshya | Wedding Invitation">
 <meta property="og:description" content="You are warmly invited to our wedding. Monday, 14th December 2026, Vadodara.">
-<meta property="og:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO/preview.jpg">
+<meta property="og:image" content="https://suzimishra78890-source.github.io/YOUR-REPO/preview.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="logo.png">
+<link rel="preload" as="image" href="cover.jpg">
+<link rel="preload" as="image" href="couple.jpg">
+<link rel="preload" as="image" href="bg.jpg">
+<link rel="preload" as="image" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
@@ -65,6 +69,9 @@
     box-shadow:0 0 80px rgba(0,0,0,.75);
   }
   .layer{position:absolute;inset:0}
+  /* pages waiting underneath stay still, so only the visible page costs anything */
+  .stage:not(.s1) .save *,.stage:not(.s1) .save *::before,.stage:not(.s1) .save *::after,
+  .stage:not(.s2) .invite *,.stage:not(.s2) .invite *::before,.stage:not(.s2) .invite *::after{animation-play-state:paused}
 
   /* shared gold text */
   .gold-text{
@@ -72,7 +79,6 @@
     background-size:220% 100%;
     -webkit-background-clip:text;background-clip:text;
     color:transparent;-webkit-text-fill-color:transparent;
-    animation:shimmer 7s linear infinite;
     filter:drop-shadow(0 .3cqw .7cqw rgba(0,0,0,.85));
   }
   @keyframes shimmer{to{background-position:-220% 0}}
@@ -82,6 +88,7 @@
 
   /* ================= COVER (page 1) ================= */
   .leaf{
+    will-change:transform;
     transform-origin:left center;
     transform-style:preserve-3d;
     transition:transform 2.3s cubic-bezier(.45,.05,.55,.95);
@@ -108,7 +115,6 @@
     position:absolute;left:50%;top:50%;
     height:100%;min-width:100%;aspect-ratio:941/1671;
     transform:translate(-50%,-50%);
-    animation:kenburns 26s ease-in-out infinite alternate;
   }
   .art img{display:block;width:100%;height:100%;user-select:none;-webkit-user-drag:none}
   @keyframes kenburns{
@@ -118,8 +124,8 @@
   .glow{
     position:absolute;width:15%;aspect-ratio:1;border-radius:50%;
     transform:translate(-50%,-50%);
-    background:radial-gradient(circle,rgba(255,196,96,.62) 0%,rgba(255,140,40,.22) 38%,rgba(255,120,30,0) 68%);
-    mix-blend-mode:screen;pointer-events:none;
+    background:radial-gradient(circle,rgba(255,200,100,.7) 0%,rgba(255,150,50,.26) 38%,rgba(255,120,30,0) 68%);
+    pointer-events:none;will-change:opacity,transform;
     animation:flicker var(--t,2.6s) ease-in-out var(--dl,0s) infinite alternate;
   }
   .glow.big{width:30%}
@@ -218,13 +224,12 @@
     background:repeating-conic-gradient(from 0deg,rgba(255,214,130,.11) 0 5deg,transparent 5deg 15deg);
     -webkit-mask-image:radial-gradient(circle,#000 0%,transparent 62%);
             mask-image:radial-gradient(circle,#000 0%,transparent 62%);
-    animation:spin 120s linear infinite;
   }
   @keyframes spin{to{transform:translateX(-50%) rotate(360deg)}}
   .bokeh{
     position:absolute;border-radius:50%;pointer-events:none;
     background:radial-gradient(circle,rgba(255,206,110,.55),rgba(255,160,50,.16) 50%,transparent 70%);
-    mix-blend-mode:screen;opacity:0;
+    opacity:0;will-change:transform,opacity;
     animation:rise var(--dur,16s) ease-in-out var(--del,0s) infinite;
   }
   @keyframes rise{
@@ -274,9 +279,9 @@
   .couple{display:grid;gap:0;margin:1cqw 0 0}
   .groom,.bride{margin:0;font:500 15.5cqw/1.25 var(--display);letter-spacing:.005em;padding:0 .05em}
   .groom{text-align:left}
-  .bride{text-align:right}
+  .bride{text-align:right;margin-top:-1.6cqw}
   .weds{
-    display:flex;align-items:center;gap:3cqw;margin:.5cqw 2cqw;
+    display:flex;align-items:center;gap:3cqw;margin:2.6cqw 2cqw .4cqw;
     font:600 4.6cqw/1 var(--caps);letter-spacing:.34em;text-transform:uppercase;color:var(--gold);
   }
   .weds::before,.weds::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-lo))}
@@ -296,6 +301,10 @@
   }
   .events .t{order:2;font:600 4.2cqw/1 var(--caps);letter-spacing:.04em;color:var(--gold);white-space:nowrap}
 
+  .roll{margin:0;font:600 5.2cqw/1.55 var(--serif);color:var(--gold-hi);text-wrap:balance}
+  .roll + .roll{margin-top:.4cqw}
+  .firm{margin:0;font:600 5.6cqw/1.45 var(--serif);color:var(--cream);text-wrap:balance}
+  .firm-loc{margin:1cqw 0 0;font:italic 500 4.4cqw/1.5 var(--serif);color:var(--gold)}
   .venue{margin:0 0 5.5cqw;font:600 5.4cqw/1.5 var(--serif);color:var(--gold-hi);text-wrap:balance}
   .map-btn{
     display:inline-flex;align-items:center;gap:2.4cqw;
@@ -308,7 +317,7 @@
   .map-btn svg{width:4.8cqw;height:4.8cqw;flex:none}
   .map-btn:focus-visible{outline:.6cqw solid #fff;outline-offset:.8cqw}
 
-  .monogram{display:block;width:58cqw;height:auto;margin:0 auto;animation:glowmono 5s ease-in-out infinite alternate}
+  .monogram{display:block;width:58cqw;height:auto;margin:0 auto;filter:drop-shadow(0 0 2.6cqw rgba(233,196,106,.4))}
   @keyframes glowmono{from{filter:drop-shadow(0 0 1cqw rgba(233,196,106,.2))}to{filter:drop-shadow(0 0 4cqw rgba(233,196,106,.7))}}
 
   /* reveal as sections scroll into view */
@@ -482,7 +491,30 @@
 
         <div class="sep reveal"><svg class="divider" viewBox="0 0 300 28" aria-hidden="true"><use href="#divider-art"/></svg></div>
 
-        <img class="monogram reveal" src="logo.png" alt="Arpita weds Lakshya monogram" width="900" height="803" loading="lazy">
+        <section class="sec reveal">
+          <p class="label">Warm Regards &amp; Best Compliments</p>
+          <p class="roll">Jeetendra Wadhwani</p>
+          <p class="roll">Lakshya Wadhwani</p>
+          <p class="roll">Megha Wadhwani Shah</p>
+          <p class="roll">Aadarsh Shah</p>
+          <p class="roll">Laxman Wadhwani</p>
+          <p class="roll">Premprakash Avtani &amp; Family</p>
+          <p class="roll">Ramesh Pradhnani &amp; Family</p>
+          <p class="roll">Sitaldas Chhablani &amp; Family</p>
+        </section>
+
+        <div class="sep reveal"><svg class="divider small" viewBox="0 0 300 28" aria-hidden="true"><use href="#divider-art"/></svg></div>
+
+        <section class="sec reveal">
+          <p class="label">Firms</p>
+          <p class="firm">JNW Business Group</p>
+          <p class="firm">Krishna Garments</p>
+          <p class="firm-loc">(New Alkapuri, Vadodara)</p>
+        </section>
+
+        <div class="sep reveal"><svg class="divider" viewBox="0 0 300 28" aria-hidden="true"><use href="#divider-art"/></svg></div>
+
+        <img class="monogram reveal" src="logo.png" alt="Arpita weds Lakshya monogram" width="900" height="803" decoding="async">
       </div>
     </div>
 
@@ -662,7 +694,7 @@
   /* ---------- BOKEH LIGHTS (page 2 background) ---------- */
   (function(){
     var host = document.getElementById('bokehHost');
-    for(var i=0;i<14;i++){
+    for(var i=0;i<6;i++){
       var b = document.createElement('i');
       b.className = 'bokeh';
       var size = 9 + Math.random()*20;
@@ -700,13 +732,13 @@
       return {x:rnd(0,W), y:rnd(0,H), r:W*rnd(.004,.011), ph:rnd(0,6.28), sp:rnd(1,2.8)};
     }
     function resize(){
-      dpr = Math.min(window.devicePixelRatio||1, 2);
+      dpr = Math.min(window.devicePixelRatio||1, 1.5);
       W = stage.clientWidth; H = stage.clientHeight;
       cv.width = W*dpr; cv.height = H*dpr;
       ctx.setTransform(dpr,0,0,dpr,0,0);
-      var np = Math.max(10, Math.min(22, Math.round(W/19)));
+      var np = Math.max(6, Math.min(10, Math.round(W/40)));
       petals = []; for(var i=0;i<np;i++) petals.push(makePetal(true));
-      stars = [];  for(var j=0;j<26;j++) stars.push(makeStar());
+      stars = [];  for(var j=0;j<10;j++) stars.push(makeStar());
     }
     function drawPetal(p, t){
       var x = p.bx + Math.sin(p.ph + t*p.sp)*p.sway;
